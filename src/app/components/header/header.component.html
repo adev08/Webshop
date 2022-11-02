@@ -12,35 +12,34 @@
                 <span class="mr-16">1 Items</span>
                 <a routerLink="cart">View Cart</a>
             </div>
-        </div>
-        <div class="py-3">
-            <div class="flex justify-between font-light mb-2">
-                Keyboard x 1
-                <span class="font-bold not-italic">{{ '150' | currency }}</span>
+            <div class="py-3">
+                <div class="flex justify-between font-light mb-2">
+                    Keyboard x 1
+                    <span class="font-bold not-italic">{{ '150' | currency }}</span>
+                </div>
+                <div class="flex justify-between font-light mb-2">
+                    Keyboard x 1
+                    <span class="font-bold not-italic">{{ '150' | currency }}</span>
+                </div>
+                <div class="flex justify-between font-light mb-2">
+                    Keyboard x 1
+                    <span class="font-bold not-italic">{{ '150' | currency }}</span>
+                </div>
             </div>
-            <div class="flex justify-between font-light mb-2">
-                Keyboard x 1
-                <span class="font-bold not-italic">{{ '150' | currency }}</span>
+            <div class="flex justify-between py-3 font-light">
+                Total:
+                <span class="font-bold not-italic">{{ '450' | currency }}</span>
             </div>
-            <div class="flex justify-between font-light mb-2">
-                Keyboard x 1
-                <span class="font-bold not-italic">{{ '150' | currency }}</span>
+            <div class="pt-3 flex justify-between">
+                <button class="bg-rose-600 text-white rounded-full w-9 h-9">
+                    <mat-icon>remove_shopping_cart</mat-icon>
+                </button>
+                <button 
+                    routerLink="cart"
+                    class="bg-green-600 text-white rounded-full w-9 h-9">
+                    <mat-icon>shopping_cart</mat-icon>
+                </button>
             </div>
         </div>
-        <div class="flex justify-between py-3 font-light">
-            Total:
-            <span class="font-bold not-italic">{{ '450' | currency }}</span>
-        </div>
-        <div class="pt-3 flex justify-between">
-            <button class="bg-rose-500 text-white rounded-full w-9 h-9">
-                <mat-icon>remove_shopping_cart</mat-icon>
-            </button>
-            <button 
-                routerLink="cart"
-                class="bg-green-600 text-white rounded-full w-9 h-9">
-                <mat-icon>remove_shopping_cart</mat-icon>
-            </button>
-        </div>
-
     </mat-menu>
 </mat-toolbar>
