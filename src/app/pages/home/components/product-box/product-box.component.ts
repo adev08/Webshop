@@ -10,7 +10,7 @@ export class ProductBoxComponent implements OnInit {
   product: Product | undefined = {
     id: 1,
     tittle: 'Snickers',
-    price: 10,
+    price: 150,
     category: 'shoes',
     description: 'description',
     image: 'https://via.placeholder.com/150'
