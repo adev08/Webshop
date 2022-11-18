@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TitleStrategy } from '@angular/router';
 import { Cart, CartItem } from 'src/app/models/cart';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -23,15 +24,17 @@ set cart(cart: Cart) {
     .reduce((prev, current) => prev + current, 0);
 }
 
-  constructor() { }
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
   }
 
   getTotal(items: Array<CartItem>): number {
-    return items
-      .map((item) => item.price * item.quantity)
-      .reduce((prev, current) => prev + current, 0);
+    return this.cartService.getTotal(items);
+  }
+
+  onClearCart() {
+    this.cartService.clearCart();
   }
 
 }
