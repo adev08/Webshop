@@ -1,0 +1,37 @@
+const express = require("express");
+const cors = require("cors");
+const bodyparser = require("body-parser");
+
+
+const app = express();
+app.use(express.static("public"));
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.json());
+app.use(cors({ origin: true, credentials: true }));
+
+
+const stripe = require("stripe")("sk_test_51M85zREpttGYcz0OFDpQuVBMF2CfO6yloT3rHafAlX2JbSrVf6XVVkG9EuSGv6AVilrwBzIfATb18lgbRFjDuUns00DMs38hbp");
+
+app.post("/checkout", async(req, res, next) => {
+    try {
+        const session = await stripe.checkout.sessions.create({
+            line_items: req.body.items.map((item) => ({
+                currency: "usd", 
+                product_data: {
+                    name: item.name,
+                    images: [item.product]
+                }, 
+                unit_amount: item.price * 100
+            })), 
+            mode: "payment", 
+            sucess_url: "http://localhost:4242/success.html",
+            cancel_url: "http://localhost:4242/cancel.html",
+        }); 
+        
+        res.status(200).json(session);
+    } catch(error) {
+        next(error)
+    }
+});
+
+app.listen(4242, () => console.log('app is running on 4242'));
