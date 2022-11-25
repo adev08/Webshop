@@ -11,7 +11,7 @@ const ROWS_HEIGHT: { [id: number]: number } = { 1: 400, 3: 335, 4: 350 };
   selector: "app-home",
   templateUrl: "./home.component.html",
 })
-export class HomeComponent implements OnInit, OnDestroy{
+export class HomeComponent implements OnInit, OnDestroy {
   cols = 3;
   rowHeight = ROWS_HEIGHT[this.cols];
   category: string | undefined;
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy{
 
   getProducts(): void {
     this.productsSubscription = this.storeService
-      .getAllProducts(this.count, this.sort)
+      .getAllProducts(this.count, this.sort, this.category)
       .subscribe((_products) => {
         this.products = _products;
       });
@@ -44,7 +44,8 @@ export class HomeComponent implements OnInit, OnDestroy{
 
   onShowCategory(newCategory: string): void {
     this.category = newCategory;
-    console.log("parent", newCategory);
+    this.getProducts();
+    // console.log("parent", newCategory);
   }
 
   onAddToCart(product: Product): void {
@@ -67,10 +68,9 @@ export class HomeComponent implements OnInit, OnDestroy{
     this.getProducts();
   }
 
-ngOnDestroy(): void {
-  if(this.productsSubscription) {
-    this.productsSubscription.unsubscribe();
+  ngOnDestroy(): void {
+    if (this.productsSubscription) {
+      this.productsSubscription.unsubscribe();
+    }
   }
-}
-
 }
